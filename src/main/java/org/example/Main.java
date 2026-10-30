@@ -2,31 +2,21 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Dishware[] inventory = new Dishware[5];
 
-        inventory[0] = new Plate("Суповая", 0.5, "Белый", 24.0);
-        inventory[1] = new Plate("Маленькая", 0.2, "Розовый", 18.0);
-        inventory[2] = new Plate("Обычная тарелка", 0.4, "Синий", 26.5);
-        inventory[3] = new Cup("Кружка", 0.35, "Черный", true);
-        inventory[4] = new Cup("Маленькая чашка", 0.25, "Зеленый", false);
+        Sportsman[] teamList = new Sportsman[5];
 
-        for (int i = 0; i < inventory.length; i++) {
-            inventory[i].displayInfo();
-            System.out.print("Назначение ");
-            inventory[i].use();
+        teamList[0] = new Forward("Алексей Миранчук", "Локомотив", 10, 10);
+        teamList[1] = new Forward("Александр Кокорин", "Спартак", 9, 12);
+        teamList[2] = new Defender("Игорь Дивеев", "ЦСКА", 4, 20);
+        teamList[3] = new Defender("Георгий Джикия", "Динамо", 14, 25);
+        teamList[4] = new Defender("Данил Круговой", "Зенит", 2, 18);
+
+
+        for (int i = 0; i < teamList.length; i++) {
+            teamList[i].displayInfo();
+
+            System.out.println("Позиция игрока поле " + teamList[i].getPosition());
+            System.out.println("Статистика игрока " + teamList[i].getStatistics());
         }
-
-
-        for (int i = 0; i < inventory.length; i++) {
-
-            if (inventory[i] instanceof Plate) {
-                Plate p = (Plate) inventory[i];
-                p.stack();
-            } else if (inventory[i] instanceof Cup) {
-                Cup c = (Cup) inventory[i];
-                c.fill();
-            }
-        }
-
     }
 }
