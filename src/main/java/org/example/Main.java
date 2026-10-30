@@ -2,21 +2,25 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
+        Installable[] softwareList = new Installable[5];
 
-        Sportsman[] teamList = new Sportsman[5];
+        softwareList[0] = new Game("Ведьмак, который заслужила т-396", "1.0", "RPG");
+        softwareList[1] = new Game("Minecraft", "1.20", "Песочница");
+        softwareList[2] = new Game("Counter-Strike 2", "1.0", "Шутер");
+        softwareList[3] = new Editor("IntelliJ IDEA", "2023.2", ".java");
+        softwareList[4] = new Editor("Photoshop", "v24", ".psd");
 
-        teamList[0] = new Forward("Алексей Миранчук", "Локомотив", 10, 10);
-        teamList[1] = new Forward("Александр Кокорин", "Спартак", 9, 12);
-        teamList[2] = new Defender("Игорь Дивеев", "ЦСКА", 4, 20);
-        teamList[3] = new Defender("Георгий Джикия", "Динамо", 14, 25);
-        teamList[4] = new Defender("Данил Круговой", "Зенит", 2, 18);
+        for (int i = 0; i < softwareList.length; i++) {
+            softwareList[i].install();
+        }
 
+        for (int i = 0; i < softwareList.length; i++) {
+            if (softwareList[i] instanceof Updatable) {
+                Updatable app = (Updatable) softwareList[i];
 
-        for (int i = 0; i < teamList.length; i++) {
-            teamList[i].displayInfo();
-
-            System.out.println("Позиция игрока поле " + teamList[i].getPosition());
-            System.out.println("Статистика игрока " + teamList[i].getStatistics());
+                System.out.println("Текущая версия ПО перед обновлением: " + app.getVersion());
+                app.update();
+            }
         }
     }
 }
